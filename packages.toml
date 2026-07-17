@@ -1,0 +1,4 @@
+# Packages for all desktop
+public = [
+	chezmoi
+]
