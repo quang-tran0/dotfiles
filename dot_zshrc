@@ -5,6 +5,10 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+
+export EDITOR="nvim"
+export VISUAL="nvim"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
