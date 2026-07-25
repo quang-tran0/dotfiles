@@ -16,7 +16,7 @@ chezmoi() {
                 local msg="${1:-Update dotfiles}"
                 command chezmoi git add . && \
                 command chezmoi git -- commit -m "$msg" && \
-                command chezmoi git push
+                command chezmoi git push -u origin main
             fi
             ;;
         link)
