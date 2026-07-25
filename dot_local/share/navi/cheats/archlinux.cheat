@@ -1,0 +1,28 @@
+% System
+
+# Update system mirrors via Reflector
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+$ country: echo "Singapore Japan Vietnam" | tr ' ' '\n'
+
+# Clean pacman cache
+sudo paccache -r
+
+# Download and setup cachyos kernel
+curl -O https://mirror.cachyos.org/cachyos-repo.tar.xz
+tar xvf cachyos-repo.tar.xz && cd cachyos-repo
+
+sudo ./cachyos-repo.sh
+cd ..
+rm -rf cachyos-repo
+
+# Download gaming package
+sudo pacman -S cachyos-gaming-meta cachyos-gaming-applications
+sudo pacman -S power-profiles-daemon
+sudo systemctl enable --now power-profiles-daemon
+sudo pacman -S gamemode
+sudo usermod -aG gamemode ${whoami}
+systemctl --user enable --now gamemoded
+
+

@@ -19,6 +19,37 @@ chezmoi() {
                 command chezmoi git push
             fi
             ;;
+        link)
+            if command chezmoi push --help &>/dev/null; then
+                echo -e "\033[1;33m[WARNING] Chezmoi đã có lệnh 'link' native! Đang chuyển sang lệnh hệ thống...\033[0m"
+                command chezmoi "$@"
+            else
+
+                shift
+                command chezmoi add "$@"
+                command chezmoi apply
+            fi
+            ;;
+        unlink)
+            if command chezmoi push --help &>/dev/null; then
+                echo -e "\033[1;33m[WARNING] Chezmoi đã có lệnh 'unlink' native! Đang chuyển sang lệnh hệ thống...\033[0m"
+                command chezmoi "$@"
+            else
+
+                shift
+                # Duyệt qua danh sách các file truyền vào
+                for target in "$@"; do
+                    # Nếu target là symlink, chép đè file thực lên trước để tránh broken symlink
+                    if [ -L "$target" ]; then
+                        local real_file
+                        real_file=$(readlink -f "$target")
+                        cp --remove-destination "$real_file" "$target"
+                    fi
+                done
+                # Chạy chezmoi forget để xoá quản lý trong repo
+                command chezmoi forget --force "$@"
+            fi
+            ;;
         *)
             command chezmoi "$@"
             ;;
