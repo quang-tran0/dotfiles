@@ -19,6 +19,14 @@ chezmoi() {
                 command chezmoi git -- push -u origin main
             fi
             ;;
+        pull)
+            if command chezmoi pull --help &>/dev/null; then
+                echo -e "\033[1;33m[WARNING] Chezmoi đã có lệnh 'pull' native! Đang chuyển sang lệnh hệ thống...\033[0m"
+                command chezmoi "$@"
+            else
+                command chezmoi git -- pull -u origin main
+                command chezmoi apply
+            ;;
         link)
             if command chezmoi link --help &>/dev/null; then
                 echo -e "\033[1;33m[WARNING] Chezmoi đã có lệnh 'link' native! Đang chuyển sang lệnh hệ thống...\033[0m"
