@@ -6,7 +6,7 @@ fcd() {
   file=$(fzf) && cd "$(dirname "$file")"
 }
 
-vcd() {
+fv() {
   local file
   file=$(fzf) && vi "$file"
 }
