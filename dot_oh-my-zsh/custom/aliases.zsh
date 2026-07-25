@@ -2,6 +2,19 @@ alias vi="nvim"
 
 
 # ===================================
+# Eza Alias
+# ===================================
+
+if (( $+commands[eza] )); then
+  unalias ls ll la lt 2>/dev/null
+
+  alias ls='eza --icons=auto --group-directories-first'
+  alias ll='eza -lah --icons=auto --group-directories-first --git'
+  alias la='eza -a --icons=auto --group-directories-first'
+  alias lt='eza --tree --icons=auto --group-directories-first'
+fi
+
+# ===================================
 # Chezmoi wrapper
 # ===================================
 chezmoi() {
@@ -26,6 +39,7 @@ chezmoi() {
             else
                 command chezmoi git -- pull -u origin main
                 command chezmoi apply
+            fi
             ;;
         link)
             if command chezmoi link --help &>/dev/null; then
