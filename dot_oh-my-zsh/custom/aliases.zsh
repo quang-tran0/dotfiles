@@ -1,5 +1,15 @@
 alias vi="nvim"
 
+# Chuyển thư mục nhanh với fzf
+fcd() {
+  local file
+  file=$(fzf) && cd "$(dirname "$file")"
+}
+
+vcd() {
+  local file
+  file=$(fzf) && vi "$file"
+}
 
 # ===================================
 # Eza Alias
