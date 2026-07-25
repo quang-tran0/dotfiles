@@ -1,6 +1,3 @@
-" ====================================================================
-" Sane & Simple Vim Configuration (~/.vimrc)
-" ====================================================================
 
 " --- General Settings ---
 set nocompatible            " Disable compatibility with old vi quirks
@@ -41,9 +38,4 @@ set undodir=~/.vim/undodir  " Centralized directory path for your undo files
 " --- Custom Key Remappings ---
 let mapleader = " "         " Map the primary prefix leader key to the Spacebar
 
-" Quickly clear active search highlighting by hitting Leader + l
-nnoremap <leader>l :nohlsearch<CR>
-
-" Toggle the visual file explorer tree by hitting Leader + e
-nnoremap <leader>e :Lex 30<CR>
-
+nnoremap <leader>cd :Ex<CR>

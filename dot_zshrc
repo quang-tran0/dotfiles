@@ -105,5 +105,6 @@ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
+eval "$(zoxide init --cmd cd zsh)"
 
 fastfetch
