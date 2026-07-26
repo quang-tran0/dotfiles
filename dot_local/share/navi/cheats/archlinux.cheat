@@ -67,6 +67,8 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 
 
+
+
 % Rescan Mirrors
 # Update system mirrors via Reflector
 sudo pacman -S --needed reflector
@@ -157,12 +159,15 @@ cd ..
 rm -rf cachyos-repo
 
 
+
+
+
 % Install Gaming Package    
 # Download gaming package from Cachyos and setup gamemode
-sudo pacman -S cachyos-gaming-meta cachyos-gaming-applications
-sudo pacman -S power-profiles-daemon
+sudo pacman -S --needed cachyos-gaming-meta cachyos-gaming-applications
+sudo pacman -S --needed power-profiles-daemon
 sudo systemctl enable --now power-profiles-daemon
-sudo pacman -S gamemode
+sudo pacman -S --needed gamemode
 sudo usermod -aG gamemode ${whoami}
 systemctl --user enable --now gamemoded
 

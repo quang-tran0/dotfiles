@@ -1,6 +1,7 @@
 alias vi="nvim"
 alias fastfetch="clear; fastfetch"
 
+
 # Chuyển thư mục nhanh với fzf
 fcd() {
   local file
@@ -87,4 +88,50 @@ chezmoi() {
             command chezmoi "$@"
             ;;
     esac
+}
+
+# ===================================
+# Chezmoi-root wrapper
+# ===================================
+chezmoi-root() {
+  local root_dir="${CHEZMOI_ROOT_DIR:-$HOME/.local/share/chezmoi/root}"
+  local config_file="$HOME/.config/chezmoi/root.toml"
+
+  case "$1" in
+    push)
+      # Kiểm tra xem chezmoi đã có lệnh `push` native chưa
+      if command chezmoi push --help &>/dev/null; then
+        echo -e "\033[1;33m[WARNING] Chezmoi-root đã có lệnh 'push' native! Đang chuyển sang lệnh hệ thống...\033[0m"
+        sudo chezmoi "$@" --config "$config_file"
+      else
+        shift # Bỏ tham số "push"
+        local msg="${1:-Update dotfiles}"
+        cd "$root_dir" && \
+        command git add . && \
+        command git commit -m "$msg" && \
+        command git push -u origin main
+        cd ~
+      fi
+      ;;
+
+    pull)
+      if command chezmoi-root pull --help &>/dev/null; then
+        echo -e "\033[1;33m[WARNING] Chezmoi-root đã có lệnh 'pull' native! Đang chuyển sang lệnh hệ thống...\033[0m"
+        sudo chezmoi "$@" --config "$config_file"
+      else
+        cd "$root_dir" && \
+        command git pull origin main && \
+        sudo chezmoi apply --config "$config_file"
+        cd ~
+      fi
+      ;;
+
+    cd)
+      cd "$root_dir"
+      ;;
+
+    *)
+      sudo chezmoi "$@" --config "$config_file"
+      ;;
+  esac
 }
