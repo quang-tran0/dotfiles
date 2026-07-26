@@ -2,5 +2,5 @@
 
 if command -v pacman &> /dev/null; then
     echo "Saving package list to chezmoi!"
-    pacman -Qeq > "$CHEZMOI_DIR/packages.txt"
+    # pacman -Qeq > "$CHEZMOI_DIR/packages.txt"
 fi
