@@ -166,3 +166,11 @@ sudo pacman -S gamemode
 sudo usermod -aG gamemode ${whoami}
 systemctl --user enable --now gamemoded
 
+
+
+
+
+% Set Up Git Credential Manager
+git-credential-manager configure
+git config --global --replace-all credential.helper manager
+git config --global credential.credentialStore secretservice
