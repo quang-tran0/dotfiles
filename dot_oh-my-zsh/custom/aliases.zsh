@@ -1,4 +1,5 @@
 alias vi="nvim"
+alias fastfetch="clear; fastfetch"
 
 # Chuyển thư mục nhanh với fzf
 fcd() {
