@@ -8,6 +8,7 @@ export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 export CHEZMOI_DIR="$HOME/.local/share/chezmoi"
+export CHEZMOI_ROOT_DIR="$CHEZMOI_DIR/root"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
