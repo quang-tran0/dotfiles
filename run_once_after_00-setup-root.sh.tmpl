@@ -1,17 +1,5 @@
 #!/bin/bash
 
-# Thư mục chezmoi source & root
-CHEZMOI_SOURCE="{{ .chezmoi.sourceDir }}"
-ROOT_DIR="$CHEZMOI_SOURCE/root"
-
-echo "==> Đang kiểm tra và cập nhật Git Submodule cho Root..."
-git -C "$CHEZMOI_SOURCE" submodule update --init --recursive
-
-if [ -f "$HOME/.config/chezmoi/root.toml" ]; then
-    echo "==> Đang apply cấu hình Root (/etc)..."
-    sudo chezmoi apply --config "$HOME/.config/chezmoi/root.toml"
-fi
-
 # if command -v pacman &> /dev/null; then
     # echo "Saving package list to chezmoi!"
     # pacman -Qeq > "$CHEZMOI_DIR/packages.txt"
