@@ -1,0 +1,1 @@
+-- Window-related keybindings (close, float toggle, pseudo, togglesplit)

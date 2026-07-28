@@ -1,0 +1,2 @@
+-- Per-device overrides (hl.device)
+-- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/

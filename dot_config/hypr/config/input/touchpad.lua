@@ -1,0 +1,1 @@
+-- Touchpad settings (natural_scroll, etc.)

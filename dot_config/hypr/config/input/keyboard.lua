@@ -1,0 +1,1 @@
+-- Keyboard: layout, variant, model, options, rules, follow_mouse, sensitivity
