@@ -1,6 +1,7 @@
 [ActivityManager]
 _k_friendly_name=Activity Manager
 switch-to-activity-42b9aa12-44c0-47d2-b93b-06c6f140b059=none,none,Switch to activity "Default"
+switch-to-activity-a014f6a8-4453-4daf-b99e-ab4b713374d1=none,none,Switch to activity "Default"
 
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to English (US)=none,none,Switch keyboard layout to English (US)
@@ -274,3 +275,7 @@ toggle do not disturb=none,none,Toggle do not disturb
 
 [services][org.kde.konsole.desktop]
 _launch=Ctrl+Alt+T\tMeta+T
+
+[services][org.kde.spectacle.desktop]
+CurrentMonitorScreenShot=none
+OpenWithoutScreenshot=none
