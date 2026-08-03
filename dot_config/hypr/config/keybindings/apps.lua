@@ -1,0 +1,10 @@
+-- App-launcher keybindings (terminal, browser, file manager, menu, shutdown helper).
+
+local mainMod = require("config.keybindings.modkey")
+local vars = require("config.variables")
+
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(vars.terminal))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(vars.browser))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(vars.fileManager))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(vars.menu))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))

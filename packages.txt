@@ -1,3 +1,4 @@
+archlinux-contrib
 ark
 base
 base-devel
@@ -58,6 +59,7 @@ noto-fonts
 npm
 nvidia-open-dkms
 os-prober
+pacman-contrib
 paru
 paru-debug
 pipewire

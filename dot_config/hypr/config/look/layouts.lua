@@ -1,0 +1,2 @@
+-- Layout-specific config (dwindle, master, scrolling)
+-- See https://wiki.hypr.land/Configuring/Layouts/

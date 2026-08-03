@@ -1,0 +1,3 @@
+-- Permissions
+-- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
+-- Note: changes here require a Hyprland restart.
