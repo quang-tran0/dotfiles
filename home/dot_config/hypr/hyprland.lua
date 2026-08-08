@@ -18,7 +18,7 @@
 
 require("config.variables")
 require("config.monitors")
--- require("config.environment")
+require("config.environment")
 -- require("config.permissions")
 require("config.autostart")
 
@@ -28,14 +28,14 @@ require("config.look.decoration")
 require("config.look.animations")
 -- require("config.look.layouts")
 require("config.look.misc")
--- require("config.input.keyboard")
--- require("config.input.touchpad")
--- require("config.input.gestures")
--- require("config.input.devices")
+require("config.input.keyboard")
+require("config.input.touchpad")
+require("config.input.gestures")
+require("config.input.devices")
 require("config.keybindings.modkey")
 require("config.keybindings.apps")
--- require("config.keybindings.window")
--- require("config.keybindings.focus")
+require("config.keybindings.window")
+require("config.keybindings.focus")
 -- require("config.keybindings.workspaces")
 -- require("config.keybindings.mouse")
 -- require("config.keybindings.media")
@@ -76,17 +76,13 @@ require("config.keybindings.apps")
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
-hl.env("XCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_SIZE", "24")
-
-
 -----------------------
 ----- PERMISSIONS -----
 -----------------------
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
 -- Please note permission changes here require a Hyprland restart and are not applied on-the-fly
--- for security reasons
+--u for security reasons
 
 -- hl.config({
 --   ecosystem = {
@@ -185,62 +181,12 @@ hl.config({
 })
 
 
----------------
----- INPUT ----
----------------
-
-hl.config({
-    input = {
-        kb_layout  = "us",
-        kb_variant = "",
-        kb_model   = "",
-        kb_options = "",
-        kb_rules   = "",
-
-        follow_mouse = 1,
-
-        sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
-
-        touchpad = {
-            natural_scroll = false,
-        },
-    },
-})
-
-hl.gesture({
-    fingers = 3,
-    direction = "horizontal",
-    action = "workspace"
-})
-
--- Example per-device config
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
-hl.device({
-    name        = "epic-mouse-v1",
-    sensitivity = -0.5,
-})
-
-
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier (also defined in config/keybindings/modkey.lua for split files)
 local vars = require("config.variables")
-
--- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
--- App-launcher binds (SUPER+Q/B/E/R/M) moved to config/keybindings/apps.lua
-local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
--- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
-
--- Move focus with mainMod + arrow keys
-hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]

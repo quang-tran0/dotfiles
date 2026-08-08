@@ -110,6 +110,18 @@
    </metadata>
   </info>
  </bookmark>
+ <bookmark href="recentlyused:/locations">
+  <title>Recent Locations</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-open-recent"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1785043176/10</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
  <bookmark href="file:///home/quang-tran/Source">
   <title>Source</title>
   <info>
@@ -164,18 +176,6 @@
    </metadata>
    <metadata owner="http://www.kde.org">
     <ID>1785043176/9</ID>
-    <isSystemItem>true</isSystemItem>
-   </metadata>
-  </info>
- </bookmark>
- <bookmark href="recentlyused:/locations">
-  <title>Recent Locations</title>
-  <info>
-   <metadata owner="http://freedesktop.org">
-    <bookmark:icon name="folder-open-recent"/>
-   </metadata>
-   <metadata owner="http://www.kde.org">
-    <ID>1785043176/10</ID>
     <isSystemItem>true</isSystemItem>
    </metadata>
   </info>
@@ -240,6 +240,15 @@
     <UDI>/org/freedesktop/UDisks2/block_devices/sda5</UDI>
     <isSystemItem>true</isSystemItem>
     <uuid>da17-cf3a</uuid>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/sda4</UDI>
+    <isSystemItem>true</isSystemItem>
+    <uuid>a0e3-fd30</uuid>
    </metadata>
   </info>
  </separator>
