@@ -1,2 +1,5 @@
 [Keyboard]
 NumLock=0
+
+[Libinput][1226][9794][CUST0001:01 04CA:2642 Touchpad]
+NaturalScroll=true
