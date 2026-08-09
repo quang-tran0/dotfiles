@@ -26,6 +26,22 @@ local function sync_neo_tree()
     end
 end
 
+local function close_tab_after_quitting_neo_tree()
+    if vim.bo.filetype ~= "neo-tree" then
+        return
+    end
+
+    local tab = vim.api.nvim_get_current_tabpage()
+    vim.schedule(function()
+        if not vim.api.nvim_tabpage_is_valid(tab) then
+            return
+        end
+
+        vim.api.nvim_set_current_tabpage(tab)
+        vim.cmd(#vim.api.nvim_list_tabpages() == 1 and "quitall" or "tabclose")
+    end)
+end
+
 return {
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -33,9 +49,16 @@ return {
         lazy = false,
 
         init = function()
+            local group = vim.api.nvim_create_augroup("NeoTreeBehavior", { clear = true })
+
             vim.api.nvim_create_autocmd("TabEnter", {
-                group = vim.api.nvim_create_augroup("SyncNeoTreeTabs", { clear = true }),
+                group = group,
                 callback = sync_neo_tree,
+            })
+
+            vim.api.nvim_create_autocmd("QuitPre", {
+                group = group,
+                callback = close_tab_after_quitting_neo_tree,
             })
         end,
 
