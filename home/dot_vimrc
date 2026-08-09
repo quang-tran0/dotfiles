@@ -39,3 +39,15 @@ set undodir=~/.vim/undodir  " Centralized directory path for your undo files
 let mapleader = " "         " Map the primary prefix leader key to the Spacebar
 
 nnoremap <leader>cd :Ex<CR>
+nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap <leader>0 10gt
+nnoremap <Tab> gt
