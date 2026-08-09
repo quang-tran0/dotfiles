@@ -17,6 +17,10 @@ return {
 		"typescript",
 		"tsx",
 		"php",
+		"bash",
+		"c",
+		"cpp",
+		"verilog",
 	    },
 
 	    auto_install = false,
