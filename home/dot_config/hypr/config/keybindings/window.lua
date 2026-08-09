@@ -6,7 +6,7 @@
 local mainMod = require("config.keybindings.modkey")
 
 -- local closeWindowBind = 
-hl.bind(mainMod .. " + C", hl.dsp.window.close())
+hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 
