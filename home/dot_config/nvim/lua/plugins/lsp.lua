@@ -1,3 +1,20 @@
+local uname = (vim.uv or vim.loop).os_uname()
+local is_linux_arm = uname.sysname == "Linux"
+    and (uname.machine == "aarch64" or uname.machine:match("^arm") ~= nil)
+
+local mason_servers = {
+    "lua_ls",
+    "html",
+    "cssls",
+    "ts_ls",
+    "pyright",
+    "intelephense",
+}
+
+if not is_linux_arm then
+    table.insert(mason_servers, "clangd")
+end
+
 return {
     {
         "mason-org/mason.nvim",
@@ -23,6 +40,10 @@ return {
                     },
                 },
             })
+
+            if is_linux_arm and vim.fn.executable("clangd") == 1 then
+                vim.lsp.enable("clangd")
+            end
         end,
     },
 
@@ -35,15 +56,7 @@ return {
         },
 
         opts = {
-            ensure_installed = {
-                "lua_ls",
-                "html",
-                "cssls",
-                "ts_ls",
-                "clangd",
-                "pyright",
-                "intelephense",
-            },
+            ensure_installed = mason_servers,
         },
     },
 }

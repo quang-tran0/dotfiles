@@ -1,6 +1,6 @@
 alias vi="nvim"
 alias fastfetch="clear; fastfetch"
-
+alias sshi='kitty +kitten ssh'
 
 # Chuyển thư mục nhanh với fzf
 fcd() {
