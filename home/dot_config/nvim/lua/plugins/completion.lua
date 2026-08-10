@@ -19,7 +19,7 @@ return {
 
                 ["<Space>"] = {
                     function(cmp)
-                        return cmp.select_and_accept({
+                        return cmp.accept({
                             callback = function()
                                 vim.api.nvim_feedkeys(" ", "n", false)
                             end,

@@ -8,7 +8,7 @@ local c = require("config.look.colors")
 hl.config({
     general = {
         gaps_in  = 5,
-        gaps_out = 20,
+        gaps_out = 10,
 
         border_size = 2,
 
@@ -26,6 +26,6 @@ hl.config({
         -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
         allow_tearing = false,
 
-        layout = "dwindle",
+        -- layout = "dwindle",
     },
 })
