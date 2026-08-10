@@ -11,6 +11,9 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(vars.menu))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("systemctl suspend"))
 hl.bind(
     mainMod .. " + SHIFT + L",
-    hl.dsp.exec_cmd("zsh -ic 'chezmoi push' && (command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit)")
+    hl.dsp.exec_cmd("(zsh -ic 'chezmoi push' || zenity --question --title='Chezmoi push failed' --text='Chezmoi push failed. Do you still want to log out?' --ok-label='Log Out' --cancel-label='Cancel') && loginctl terminate-session \"$XDG_SESSION_ID\"")
 )
-hl.bind(mainMod .. " + SHIFT + U", hl.dsp.exec_cmd("zsh -ic 'chezmoi push' && systemctl poweroff"))
+hl.bind(
+    mainMod .. " + SHIFT + U",
+    hl.dsp.exec_cmd("(zsh -ic 'chezmoi push' || zenity --question --title='Chezmoi push failed' --text='Chezmoi push failed. Do you still want to shut down?' --ok-label='Shut Down' --cancel-label='Cancel') && systemctl poweroff")
+)
