@@ -6,6 +6,7 @@ local mason_servers = {
     "lua_ls",
     "html",
     "cssls",
+    "jsonls",
     "ts_ls",
     "pyright",
     "intelephense",
@@ -25,6 +26,20 @@ return {
         "neovim/nvim-lspconfig",
 
         config = function()
+            local format_group = vim.api.nvim_create_augroup("LspFormatOnSave", { clear = true })
+
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = format_group,
+                callback = function(args)
+                    local method = vim.lsp.protocol.Methods.textDocument_formatting
+                    local clients = vim.lsp.get_clients({ bufnr = args.buf, method = method })
+
+                    if #clients > 0 then
+                        vim.lsp.buf.format({ bufnr = args.buf, timeout_ms = 3000 })
+                    end
+                end,
+            })
+
             vim.lsp.config("lua_ls", {
                 settings = {
                     Lua = {

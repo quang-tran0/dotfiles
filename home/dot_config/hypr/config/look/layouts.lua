@@ -4,7 +4,7 @@
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
     general = {
-	layout = "scrolling",
+        layout = "dwindle",
     },
     dwindle = {
         preserve_split = true, -- You probably want this
@@ -24,5 +24,3 @@ hl.config({
         fullscreen_on_one_column = true,
     },
 })
-
-

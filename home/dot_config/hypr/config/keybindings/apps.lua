@@ -11,7 +11,6 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(vars.menu))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("systemctl suspend"))
 hl.bind(
     mainMod .. " + SHIFT + L",
-    hl.dsp.exec_cmd("chezmoi push && (command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit)")
+    hl.dsp.exec_cmd("zsh -ic 'chezmoi push' && (command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit)")
 )
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("chezmoi push && systemctl poweroff"))
-
+hl.bind(mainMod .. " + SHIFT + U", hl.dsp.exec_cmd("zsh -ic 'chezmoi push' && systemctl poweroff"))
