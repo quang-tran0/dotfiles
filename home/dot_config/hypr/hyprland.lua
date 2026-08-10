@@ -39,7 +39,7 @@ require("config.keybindings.workspaces")
 require("config.keybindings.mouse")
 require("config.keybindings.media")
 
-
+require("config.keybindings.screenshot")
 
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/

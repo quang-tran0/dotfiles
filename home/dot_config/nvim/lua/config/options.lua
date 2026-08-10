@@ -8,4 +8,3 @@ vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 
 vim.opt.whichwrap:append("<,>,[,],h,l")
-

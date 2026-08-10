@@ -1,121 +1,86 @@
 {
     "layer": "top",
-    "position": "top",
-    "height": 38,
-    "margin-top": 10,
-    "margin-left": 10,
-    "margin-right": 10,
-    "spacing": 6,
-    "reload_style_on_change": true,
     "modules-left": [
-        "clock"
+        "hyprland/workspaces",
+        "hyprland/submap"
     ],
     "modules-center": [
-        "hyprland/workspaces"
+        "clock"
     ],
     "modules-right": [
-        "custom/media",
-        "pulseaudio",
-        "network",
         "battery",
-        "custom/weather"
+        "bluetooth",
+        "network",
+        "cpu",
+        "memory"
     ],
-    "hyprland/workspaces": {
-        "format": "{icon}",
-        "on-click": "activate",
-        "sort-by": "number",
+    "hyprland/window": {
+        "max-length": 50
+    },
+    "battery": {
+        "interval": 60,
+        "format": "{capacity}% {icon}",
         "format-icons": {
-            "urgent": "󰀨",
-            "active": "",
-            "default": ""
-        }
-    },
-    "clock": {
-        "format": "󰥔  {:%H:%M}",
-        "format-alt": "󰃭  {:%a, %d %b %Y}",
-        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-    "custom/media": {
-        "exec": "/home/quang-tran/.config/waybar/scripts/mediaplayer.py",
-        "return-type": "json",
-        "format": "{text}",
-        "escape": true,
-        "hide-empty-text": true,
-        "max-length": 40,
-        "restart-interval": 2,
-        "on-click": "playerctl play-pause",
-        "on-click-right": "playerctl stop",
-        "on-scroll-up": "playerctl next",
-        "on-scroll-down": "playerctl previous",
-        "smooth-scrolling-threshold": 10
-    },
-    "pulseaudio": {
-        "format": "{icon}  {volume}%",
-        "format-bluetooth": "󰂯  {volume}%",
-        "format-muted": "󰖁  muted",
-        "scroll-step": 1,
-        "on-click": "pavucontrol",
-        "ignored-sinks": [
-            "Easy Effects Sink"
-        ],
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "󰋎",
-            "phone": "",
-            "portable": "",
-            "car": "",
             "default": [
-                "󰕿",
-                "󰖀",
-                "󰕾"
+                "󰂎",
+                "󰁺",
+                "󰁻",
+                "󰁼",
+                "󰁽",
+                "󰁾",
+                "󰁿",
+                "󰂀",
+                "󰂁",
+                "󰂂",
+                "󰁹"
+            ],
+            "charging": [
+                "󰢟",
+                "󰢜",
+                "󰂆",
+                "󰂇",
+                "󰂈",
+                "󰢝",
+                "󰂉",
+                "󰢞",
+                "󰂊",
+                "󰂋",
+                "󰂅"
             ]
         }
     },
+    "clock": {
+        "format-alt": "{:%a, %d. %b  %H:%M}"
+    },
+    "bluetooth": {
+        // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
+        "format": " {status}",
+        "format-disabled": "", // an empty format will hide the module
+        "format-no-controller": "",
+        "format-connected": " {num_connections}",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    },
+    "cpu": {
+        "interval": 10,
+        "format": "{}% ",
+        "max-length": 10
+    },
+    "memory": {
+        "interval": 30,
+        "format": "{used:0.1f}G/{total:0.1f}G "
+    },
     "network": {
-        "interval": 5,
-        "format-wifi": "{icon}  {essid}",
-        "format-ethernet": "󰈀  ethernet",
-        "format-linked": "󰈀  no IP",
-        "format-disconnected": "󰤭  offline",
-        "tooltip-format-wifi": "{essid}\n{ipaddr}/{cidr} · {signalStrength}%",
-        "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
-        "max-length": 28,
-        "format-icons": [
-            "󰤯",
-            "󰤟",
-            "󰤢",
-            "󰤥",
-            "󰤨"
-        ]
-    },
-    "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}  {capacity}%",
-        "format-charging": "󰂄  {capacity}%",
-        "format-plugged": "󰚥  {capacity}%",
-        "tooltip-format": "{time} · {power:.1f} W",
-        "format-icons": [
-            "󰁺",
-            "󰁻",
-            "󰁼",
-            "󰁽",
-            "󰁾",
-            "󰁿",
-            "󰂀",
-            "󰂁",
-            "󰂂",
-            "󰁹"
-        ]
-    },
-    "custom/weather": {
-        "exec": "/home/quang-tran/.config/waybar/scripts/get_weather.sh",
-        "return-type": "json",
-        "format": "{text}",
-        "tooltip": true,
-        "interval": 1800
+        "interface": "wlp2s0",
+        "format": "{ifname}",
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ifname} 󰲝",
+        "format-disconnected": "󰖪",
+        "tooltip-format": "{ifname}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50
     }
 }

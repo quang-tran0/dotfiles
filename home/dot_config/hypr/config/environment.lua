@@ -25,3 +25,9 @@ hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 -- NVIDIA Specific
 hl.env("GBM_BACKEND", "nvidia-drm")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+
+-- Screenshots Location
+hl.env(
+    "HYPRSHOT_DIR",
+    os.getenv("HOME") .. "/Pictures/Screenshots"
+)
