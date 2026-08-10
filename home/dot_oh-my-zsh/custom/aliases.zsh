@@ -30,64 +30,77 @@ fi
 # Chezmoi wrapper
 # ===================================
 chezmoi() {
-    case "$1" in
-        push)
-            # Kiểm tra xem chezmoi đã có lệnh `push` native chưa
-            if command chezmoi push --help &>/dev/null; then
-                echo -e "\033[1;33m[WARNING] Chezmoi đã có lệnh 'push' native! Đang chuyển sang lệnh hệ thống...\033[0m"
-                command chezmoi "$@"
-            else
-                shift # Bỏ tham số "push"
-                local msg="${1:-Update dotfiles}"
-                command chezmoi git add . && \
-                command chezmoi git -- commit -m "$msg" && \
-                command chezmoi git -- push -u origin main
-            fi
-            ;;
-        pull)
-            if command chezmoi pull --help &>/dev/null; then
-                echo -e "\033[1;33m[WARNING] Chezmoi đã có lệnh 'pull' native! Đang chuyển sang lệnh hệ thống...\033[0m"
-                command chezmoi "$@"
-            else
-                command chezmoi git -- pull -u origin main
-                command chezmoi apply
-            fi
-            ;;
-        link)
-            if command chezmoi link --help &>/dev/null; then
-                echo -e "\033[1;33m[WARNING] Chezmoi đã có lệnh 'link' native! Đang chuyển sang lệnh hệ thống...\033[0m"
-                command chezmoi "$@"
-            else
+  case "$1" in
+    push)
+      if command chezmoi push --help &>/dev/null; then
+        echo -e "\033[1;33m[WARNING] Chezmoi đã có lệnh 'push' native! Đang chuyển sang lệnh hệ thống...\033[0m"
+        command chezmoi "$@"
+      else
+        shift
+        local msg="${1:-Update dotfiles}"
 
-                shift
-                command chezmoi add "$@"
-                command chezmoi apply
-            fi
-            ;;
-        unlink)
-            if command chezmoi unlink --help &>/dev/null; then
-                echo -e "\033[1;33m[WARNING] Chezmoi đã có lệnh 'unlink' native! Đang chuyển sang lệnh hệ thống...\033[0m"
-                command chezmoi "$@"
-            else
+        # Re-add managed files nếu target state đã thay đổi
+        if [ -n "$(command chezmoi status)" ]; then
+          echo "Chezmoi changes detected. Re-adding managed files..."
+          command chezmoi re-add
+        fi
 
-                shift
-                # Duyệt qua danh sách các file truyền vào
-                for target in "$@"; do
-                    # Nếu target là symlink, chép đè file thực lên trước để tránh broken symlink
-                    if [ -L "$target" ]; then
-                        local real_file
-                        real_file=$(readlink -f "$target")
-                        cp --remove-destination "$real_file" "$target"
-                    fi
-                done
-                # Chạy chezmoi forget để xoá quản lý trong repo
-                command chezmoi forget --force "$@"
-            fi
-            ;;
-        *)
-            command chezmoi "$@"
-            ;;
-    esac
+        # Kiểm tra source repo có thay đổi cần commit không
+        if [ -n "$(command chezmoi git -- status --porcelain)" ]; then
+          echo "Git changes detected. Committing..."
+
+          command chezmoi git -- add -A &&
+            command chezmoi git -- commit -m "$msg" &&
+            command chezmoi git -- push -u origin main
+        else
+          echo "No changes to push."
+        fi
+      fi
+      ;;
+    pull)
+      if command chezmoi pull --help &>/dev/null; then
+        echo -e "\033[1;33m[WARNING] Chezmoi đã có lệnh 'pull' native! Đang chuyển sang lệnh hệ thống...\033[0m"
+        command chezmoi "$@"
+      else
+        command chezmoi git -- pull -u origin main
+        command chezmoi apply
+      fi
+      ;;
+    link)
+      if command chezmoi link --help &>/dev/null; then
+        echo -e "\033[1;33m[WARNING] Chezmoi đã có lệnh 'link' native! Đang chuyển sang lệnh hệ thống...\033[0m"
+        command chezmoi "$@"
+      else
+
+        shift
+        command chezmoi add "$@"
+        command chezmoi apply
+      fi
+      ;;
+    unlink)
+      if command chezmoi unlink --help &>/dev/null; then
+        echo -e "\033[1;33m[WARNING] Chezmoi đã có lệnh 'unlink' native! Đang chuyển sang lệnh hệ thống...\033[0m"
+        command chezmoi "$@"
+      else
+
+        shift
+        # Duyệt qua danh sách các file truyền vào
+        for target in "$@"; do
+          # Nếu target là symlink, chép đè file thực lên trước để tránh broken symlink
+          if [ -L "$target" ]; then
+            local real_file
+            real_file=$(readlink -f "$target")
+            cp --remove-destination "$real_file" "$target"
+          fi
+        done
+        # Chạy chezmoi forget để xoá quản lý trong repo
+        command chezmoi forget --force "$@"
+      fi
+      ;;
+    *)
+      command chezmoi "$@"
+      ;;
+  esac
 }
 
 # ===================================
@@ -107,9 +120,9 @@ chezmoi-root() {
         shift # Bỏ tham số "push"
         local msg="${1:-Update dotfiles}"
         cd "$root_dir" && \
-        command git add . && \
-        command git commit -m "$msg" && \
-        command git push -u origin main
+          command git add . && \
+          command git commit -m "$msg" && \
+          command git push -u origin main
         cd ~
       fi
       ;;
@@ -120,8 +133,8 @@ chezmoi-root() {
         sudo chezmoi "$@" --config "$config_file"
       else
         cd "$root_dir" && \
-        command git pull origin main && \
-        sudo chezmoi apply --config "$config_file"
+          command git pull origin main && \
+          sudo chezmoi apply --config "$config_file"
         cd ~
       fi
       ;;
