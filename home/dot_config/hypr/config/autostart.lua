@@ -3,7 +3,7 @@
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("awww-daemon")
-    hl.exec_cmd("$HOME/.config/waybar/scripts/launch.sh")
+    hl.exec_cmd("noctalia")
     hl.exec_cmd("swaync")
     hl.exec_cmd("fcitx5 -d")
 

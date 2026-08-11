@@ -31,3 +31,4 @@ ufw
 vim
 zoxide
 zsh
+kwalletmanager
