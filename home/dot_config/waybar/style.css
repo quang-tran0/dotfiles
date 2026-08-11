@@ -12,7 +12,6 @@
 }
 
 window#waybar {
-    margin: 15px;
     background-color: @dark-9;
     color: #ffffff;
 }
@@ -49,9 +48,39 @@ window#waybar {
 #bluetooth,
 #cpu,
 #memory,
-#network {
+#network,
+#volume {
     border-radius: 8px;
     padding: 5px 8px;
     margin: 5px 10px 5px 0px;
     background: @dark-8;
+}
+
+#pulseaudio-slider {
+    padding: 0px;
+    margin: 0px;
+    margin-left: 8px;
+}
+
+#pulseaudio-slider slider {
+    all: unset;
+    min-height: 0px;
+    min-width: 0px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+    min-height: 5px;
+    min-width: 75px;
+    border-radius: 5px;
+    background: @dark-7;
+}
+
+#pulseaudio-slider highlight {
+    min-width: 10px;
+    border-radius: 5px;
+    background: @highlight;
 }
