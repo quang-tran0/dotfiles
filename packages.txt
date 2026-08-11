@@ -32,3 +32,8 @@ vim
 zoxide
 zsh
 kwalletmanager
+archlinux-xdg-menu
+kservice
+dolphin
+zenity
+noctalia

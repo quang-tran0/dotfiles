@@ -3,11 +3,11 @@
 
 -- Example window rules that are useful
 
-hl.workspace_rule({ workspace = "1", monitor = "DP-1", persistent = true, default_name = "web" })
-hl.workspace_rule({ workspace = "2", monitor = "DP-1", persistent = true, default_name = "code" })
-hl.workspace_rule({ workspace = "3", monitor = "DP-1", persistent = true, default_name = "chat" })
-hl.workspace_rule({ workspace = "4", monitor = "DP-1", persistent = true, default_name = "game" })
-hl.workspace_rule({ workspace = "5", monitor = "DP-1", persistent = true, default_name = "design" })
+hl.workspace_rule({ workspace = "1", persistent = true, default_name = "1" })
+hl.workspace_rule({ workspace = "2", persistent = true, default_name = "2" })
+hl.workspace_rule({ workspace = "3", persistent = true, default_name = "3" })
+hl.workspace_rule({ workspace = "4", persistent = true, default_name = "4" })
+hl.workspace_rule({ workspace = "5", persistent = true, default_name = "5" })
 
 hl.window_rule({
     -- Ignore maximize requests from all apps. You'll probably like this.
