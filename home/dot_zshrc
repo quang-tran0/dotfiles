@@ -111,3 +111,4 @@ fi
 eval "$(zoxide init --cmd cd zsh)"
 
 fastfetch
+export PATH="$HOME/.cargo/bin:$PATH"

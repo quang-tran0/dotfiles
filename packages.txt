@@ -1,5 +1,4 @@
 chezmoi
-discord
 efibootmgr
 eza
 fastfetch
@@ -37,3 +36,4 @@ kservice
 dolphin
 zenity
 noctalia
+okular
