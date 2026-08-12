@@ -192,20 +192,19 @@ wallpaper_scheme = "m3-content"
     builtin_ids = [ "cava" ]
 
 [wallpaper]
-directory = "/home/quang-tran/Pictures/Wallpaper"
+directory = "~/Pictures/Wallpapers"
 
     [wallpaper.default]
-    path = "/home/quang-tran/Pictures/Wallpaper/3.jpg"
+    path = "/home/quang-tran/Pictures/Wallpapers/4.jpg"
 
     [wallpaper.last]
-    path = "/home/quang-tran/Pictures/Wallpaper/3.jpg"
+    path = "/home/quang-tran/Pictures/Wallpapers/4.jpg"
 
     [wallpaper.monitors.HDMI-A-1]
     path = "/home/quang-tran/Pictures/Wallpaper/3.jpg"
 
-    [[wallpaper.favorite]]
-    path = "/home/quang-tran/Pictures/Wallpaper/4.jpg"
-    theme_mode = "auto"
+    [wallpaper.monitors.eDP-1]
+    path = "/home/quang-tran/Pictures/Wallpapers/4.jpg"
 
 [widget.clock]
 capsule = true
