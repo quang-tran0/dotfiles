@@ -7,8 +7,7 @@
 
 local vars = {
     terminal    = "kitty",
-    fileManager = "dolphin",
-    menu        = "rofi -show drun",
+    fileManager = "nautilus --new-window",
     browser     = "brave",
 }
 

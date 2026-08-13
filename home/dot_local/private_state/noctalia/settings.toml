@@ -1,6 +1,15 @@
 config_version = 12
 
-[bar.default]
+[bar]
+order = [ "default" ]
+
+    [bar.default]
+    background_opacity = 0.69999998435378075
+    color = "primary"
+    font_weight = 700
+    layer = "overlay"
+    start = [ "launcher", "wallpaper", "workspaces", "spacer_2", "privacy" ]
+    widget_spacing = 9
 
 [desktop_widgets]
 schema_version = 2
@@ -36,7 +45,7 @@ widget_order = [
         color_1 = "on_surface"
         color_2 = "primary"
         mirrored = true
-        show_when_idle = true
+        show_when_idle = false
 
     [desktop_widgets.widget.desktop-widget-0000000000000002]
     box_height = 64.0
@@ -59,7 +68,7 @@ widget_order = [
         color_1 = "on_surface"
         color_2 = "primary"
         mirrored = true
-        show_when_idle = true
+        show_when_idle = false
 
     [desktop_widgets.widget.desktop-widget-0000000000000004]
     box_height = 168.0
@@ -91,11 +100,6 @@ widget_order = [
         center_text = false
         font_family = "AtkynsonMono NFP Medium"
         format = "{:%d/%m/%y}"
-
-[hooks]
-logging_out = "zsh -ic 'chezmoi push' || zenity --question --title='Chezmoi push failed' --text='Chezmoi push failed. Do you still want to log out?' --ok-label='Log Out' --cancel-label='Cancel'"
-rebooting = "zsh -ic 'chezmoi push' || zenity --question --title='Chezmoi push failed' --text='Chezmoi push failed. Do you still want to reboot?' --ok-label='Shut Down' --cancel-label='Cancel'"
-shutting_down = "zsh -ic 'chezmoi push' || zenity --question --title='Chezmoi push failed' --text='Chezmoi push failed. Do you still want to shut down?' --ok-label='Shut Down' --cancel-label='Cancel'"
 
 [location]
 auto_locate = true
@@ -172,7 +176,7 @@ temperature_night = 5100
 video_directory = "/home/quang-tran/Videos"
 
 [plugins]
-enabled = [ "noctalia/mpvpaper" ]
+enabled = []
 
 [shell]
 lang = "en"
@@ -183,7 +187,7 @@ lang = "en"
 
 [theme]
 builtin = "Noctalia"
-community_palette = "Catppuccin Macchiato Peach"
+community_palette = "Catppuccin Mocha Blue"
 mode = "dark"
 source = "community"
 wallpaper_scheme = "m3-content"
@@ -192,25 +196,34 @@ wallpaper_scheme = "m3-content"
     builtin_ids = [ "cava" ]
 
 [wallpaper]
-directory = "/home/quang-tran/Pictures/Wallpaper"
+directory = "/home/quang-tran/Pictures/Wallpapers"
 
     [wallpaper.default]
-    path = "/home/quang-tran/Pictures/Wallpaper/3.jpg"
+    path = "/home/quang-tran/Pictures/Wallpapers/3.jpg"
 
     [wallpaper.last]
-    path = "/home/quang-tran/Pictures/Wallpaper/3.jpg"
+    path = "/home/quang-tran/Pictures/Wallpapers/3.jpg"
 
     [wallpaper.monitors.HDMI-A-1]
-    path = "/home/quang-tran/Pictures/Wallpaper/3.jpg"
+    path = "/home/quang-tran/Pictures/Wallpapers/3.jpg"
 
     [[wallpaper.favorite]]
     path = "/home/quang-tran/Pictures/Wallpaper/4.jpg"
     theme_mode = "auto"
 
+[widget.audio_visualizer]
+bands = 10
+centered = false
+interactive = false
+width = 82
+
 [widget.clock]
-capsule = true
 font_family = "JetBrains Mono"
-font_weight = 600
+font_weight = 700
+format = "{:%a %d %b %H:%M}"
+
+[widget.spacer_2]
+type = "spacer"
 
 [widget.workspaces]
 labels_only_when_occupied = true

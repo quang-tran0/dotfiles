@@ -6,7 +6,6 @@ local vars = require("config.variables")
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(vars.terminal))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(vars.browser))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(vars.fileManager))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(vars.menu))
 
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("systemctl suspend"))
 hl.bind(

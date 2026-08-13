@@ -33,7 +33,9 @@ zsh
 kwalletmanager
 archlinux-xdg-menu
 kservice
-dolphin
 zenity
 noctalia
 okular
+nautilus
+dolphin
+gnome-text-editor
