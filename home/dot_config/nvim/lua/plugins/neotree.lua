@@ -27,7 +27,7 @@ local function sync_neo_tree()
 end
 
 local function close_tab_after_quitting_neo_tree()
-    if vim.bo.filetype ~= "neo-tree" then
+    if vim.bo.filetype ~= "neo-tree" or #vim.api.nvim_tabpage_list_wins(0) > 1 then
         return
     end
 

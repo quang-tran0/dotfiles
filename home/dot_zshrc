@@ -18,6 +18,9 @@ export PATH="$HOME/Source/QuestaSim/questasim/linux_x86_64/":$PATH
 export PATH="$HOME/Source/QuestaSim/questasim/RUVM_2021.2":$PATH
 export LM_LICENSE_FILE="$HOME/Source/QuestaSim/license.dat":$LM_LICENSE_FILE
 
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME=""
 

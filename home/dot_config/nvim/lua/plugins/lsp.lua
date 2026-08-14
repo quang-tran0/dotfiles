@@ -7,6 +7,7 @@ local mason_servers = {
     "html",
     "cssls",
     "jsonls",
+    "marksman",
     "ts_ls",
     "pyright",
     "intelephense",
