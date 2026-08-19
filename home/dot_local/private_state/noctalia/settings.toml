@@ -7,7 +7,6 @@ order = [ "default" ]
     background_opacity = 0.69999998435378075
     color = "primary"
     font_weight = 700
-    layer = "overlay"
     start = [ "launcher", "wallpaper", "workspaces", "spacer_2", "privacy" ]
     widget_spacing = 9
 
