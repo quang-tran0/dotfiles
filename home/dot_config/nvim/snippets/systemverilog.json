@@ -1,0 +1,21 @@
+{
+  "always block": {
+    "prefix": "always",
+    "body": [
+      "always @(${1:*}) begin",
+      "\t$0",
+      "end"
+    ],
+    "description": "Insert an always block"
+  },
+  "posedge": {
+    "prefix": "posedge",
+    "body": "posedge ${1:signal}",
+    "description": "Insert a positive edge event"
+  },
+  "negedge": {
+    "prefix": "negedge",
+    "body": "negedge ${1:signal}",
+    "description": "Insert a negative edge event"
+  }
+}

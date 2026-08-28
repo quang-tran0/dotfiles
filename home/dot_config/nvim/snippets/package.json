@@ -1,0 +1,11 @@
+{
+  "name": "personal-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "systemverilog",
+        "path": "./systemverilog.json"
+      }
+    ]
+  }
+}
