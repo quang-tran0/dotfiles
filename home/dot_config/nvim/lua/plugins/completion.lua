@@ -1,11 +1,31 @@
+local function accept_and_move(key)
+    return function(cmp)
+        return cmp.accept({
+            callback = function()
+                local termcode = vim.api.nvim_replace_termcodes(key, true, false, true)
+                vim.api.nvim_feedkeys(termcode, "n", false)
+            end,
+        })
+    end
+end
+
 return {
     {
         "saghen/blink.cmp",
         version = "*",
 
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+        },
+
         opts = {
             keymap = {
                 preset = "enter",
+
+                ["<Up>"] = { accept_and_move("<Up>"), "fallback" },
+                ["<Down>"] = { accept_and_move("<Down>"), "fallback" },
+                ["<Left>"] = { accept_and_move("<Left>"), "fallback" },
+                ["<Right>"] = { accept_and_move("<Right>"), "fallback" },
 
                 ["<Tab>"] = {
                     function(cmp)

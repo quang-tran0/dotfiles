@@ -21,6 +21,8 @@ export LM_LICENSE_FILE="$HOME/Source/QuestaSim/license.dat":$LM_LICENSE_FILE
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME=""
 

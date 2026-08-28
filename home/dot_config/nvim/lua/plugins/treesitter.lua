@@ -1,5 +1,6 @@
 local languages = {
     "lua",
+    "json",
     "html",
     "javascript",
     "typescript",
@@ -30,10 +31,13 @@ return {
         require("nvim-treesitter").install(languages)
 
         vim.api.nvim_create_autocmd("FileType", {
-            pattern = vim.list_extend({ "verilog" }, languages),
+            pattern = vim.list_extend({ "verilog", "typescriptreact" }, languages),
             callback = function()
                 vim.treesitter.start()
-                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+                if vim.bo.filetype ~= "verilog" and vim.bo.filetype ~= "systemverilog" then
+                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                end
             end,
         })
 

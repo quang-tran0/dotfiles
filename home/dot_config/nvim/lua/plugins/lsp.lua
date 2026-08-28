@@ -11,6 +11,7 @@ local mason_servers = {
     "ts_ls",
     "pyright",
     "intelephense",
+    "slang_server",
 }
 
 if not is_linux_arm then
