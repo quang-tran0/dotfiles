@@ -39,3 +39,4 @@ okular
 nautilus
 dolphin
 gnome-text-editor
+tree-sitter-cli
