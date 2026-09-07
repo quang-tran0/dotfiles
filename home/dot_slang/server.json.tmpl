@@ -1,0 +1,14 @@
+{
+  "flags"{{ .chezmoi.pathListSeparator }} "-I{{ .chezmoi.destDir }}{{ .chezmoi.pathSeparator }}Source{{ .chezmoi.pathSeparator }}QuestaSim{{ .chezmoi.pathSeparator }}questasim{{ .chezmoi.pathSeparator }}verilog_src{{ .chezmoi.pathSeparator }}uvm-1.2{{ .chezmoi.pathSeparator }}src",
+  "index"{{ .chezmoi.pathListSeparator }} [
+    {
+      "dirs"{{ .chezmoi.pathListSeparator }} ["."],
+      "excludeDirs"{{ .chezmoi.pathListSeparator }} [".{{ .chezmoi.config.git.command }}", "work"]
+    },
+    {
+      "dirs"{{ .chezmoi.pathListSeparator }} [
+        "{{ .chezmoi.destDir }}{{ .chezmoi.pathSeparator }}Source{{ .chezmoi.pathSeparator }}QuestaSim{{ .chezmoi.pathSeparator }}questasim{{ .chezmoi.pathSeparator }}verilog_src{{ .chezmoi.pathSeparator }}uvm-1.2{{ .chezmoi.pathSeparator }}src"
+      ]
+    }
+  ]
+}

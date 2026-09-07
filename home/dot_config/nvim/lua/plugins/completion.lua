@@ -1,12 +1,6 @@
-local function accept_and_move(key)
-    return function(cmp)
-        return cmp.accept({
-            callback = function()
-                local termcode = vim.api.nvim_replace_termcodes(key, true, false, true)
-                vim.api.nvim_feedkeys(termcode, "n", false)
-            end,
-        })
-    end
+local function is_verilog_family(ctx)
+    local filetype = vim.bo[ctx.bufnr].filetype
+    return filetype == "verilog" or filetype == "systemverilog"
 end
 
 return {
@@ -22,34 +16,15 @@ return {
             keymap = {
                 preset = "enter",
 
-                ["<Up>"] = { accept_and_move("<Up>"), "fallback" },
-                ["<Down>"] = { accept_and_move("<Down>"), "fallback" },
-                ["<Left>"] = { accept_and_move("<Left>"), "fallback" },
-                ["<Right>"] = { accept_and_move("<Right>"), "fallback" },
-
                 ["<Tab>"] = {
-                    function(cmp)
-                        if cmp.is_menu_visible() then
-                            return cmp.select_next({ auto_insert = true })
-                        end
-                    end,
+                    "select_next",
                     "snippet_forward",
                     "fallback",
                 },
 
-                ["<Space>"] = {
-                    function(cmp)
-                        return cmp.accept({
-                            callback = function()
-                                vim.api.nvim_feedkeys(" ", "n", false)
-                            end,
-                        })
-                    end,
-                    "fallback",
-                },
-
-                ["<CR>"] = {
-                    "select_and_accept",
+                ["<S-Tab>"] = {
+                    "select_prev",
+                    "snippet_backward",
                     "fallback",
                 },
             },
@@ -58,7 +33,7 @@ return {
                 list = {
                     selection = {
                         preselect = false,
-                        auto_insert = true,
+                        auto_insert = false,
                     },
                 },
                 documentation = {
@@ -70,9 +45,22 @@ return {
             sources = {
                 default = {
                     "lsp",
-                    "path",
-                    "snippets",
                     "buffer",
+                    "snippets",
+                    "path",
+                },
+
+                providers = {
+                    lsp = {
+                        fallbacks = function(ctx)
+                            return is_verilog_family(ctx) and {} or { "buffer" }
+                        end,
+                    },
+                    snippets = {
+                        score_offset = function(ctx)
+                            return is_verilog_family(ctx) and -8 or -1
+                        end,
+                    },
                 },
             },
         },

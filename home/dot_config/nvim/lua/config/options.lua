@@ -8,3 +8,12 @@ vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 
 vim.opt.whichwrap:append("<,>,[,],h,l")
+
+vim.filetype.add({
+    extension = {
+        v = "verilog",
+        vh = "verilog",
+        sv = "systemverilog",
+        svh = "systemverilog",
+    },
+})

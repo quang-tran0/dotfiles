@@ -29,6 +29,7 @@ return {
 
     config = function()
         require("nvim-treesitter").install(languages)
+        vim.treesitter.language.register("systemverilog", "verilog")
 
         vim.api.nvim_create_autocmd("FileType", {
             pattern = vim.list_extend({ "verilog", "typescriptreact" }, languages),
