@@ -1,0 +1,11 @@
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64") }}
+.config/gtk-3.0/**
+.config/hypr/**
+.config/fcitx5/**
+.config/waybar/**
+.config/brave-flags.conf
+.config/kcminputrc
+.config/kglobalshortcutsrc
+.config/konsolerc
+.config/kwinrc
+{{ end }}

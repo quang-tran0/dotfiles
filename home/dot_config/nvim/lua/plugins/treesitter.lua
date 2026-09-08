@@ -10,6 +10,7 @@ local languages = {
     "bash",
     "c",
     "cpp",
+    "make",
     "systemverilog",
 }
 
@@ -32,11 +33,15 @@ return {
         vim.treesitter.language.register("systemverilog", "verilog")
 
         vim.api.nvim_create_autocmd("FileType", {
-            pattern = vim.list_extend({ "verilog", "typescriptreact" }, languages),
+            pattern = vim.list_extend({ "verilog", "automake", "typescriptreact" }, languages),
             callback = function()
                 vim.treesitter.start()
 
-                if vim.bo.filetype ~= "verilog" and vim.bo.filetype ~= "systemverilog" then
+                if vim.bo.filetype ~= "verilog"
+                    and vim.bo.filetype ~= "systemverilog"
+                    and vim.bo.filetype ~= "make"
+                    and vim.bo.filetype ~= "automake"
+                then
                     vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                 end
             end,
