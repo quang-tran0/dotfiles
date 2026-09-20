@@ -19,9 +19,11 @@
 
 # Workstation/x86-specific
 .slang/**
-Scripts/depman
 
 # Input-method environment; unnecessary on headless Pi
 .zprofile
+
+Documents/**
+Scripts/**
 
 {{ end }}
