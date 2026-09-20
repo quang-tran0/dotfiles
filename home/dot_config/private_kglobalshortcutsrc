@@ -278,7 +278,3 @@ new-window=Meta+B
 
 [services][org.kde.konsole.desktop]
 _launch=Ctrl+Alt+T\tMeta+T
-
-[services][org.kde.spectacle.desktop]
-CurrentMonitorScreenShot=none
-OpenWithoutScreenshot=none

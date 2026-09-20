@@ -1,11 +1,27 @@
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64") }}
+
+# Desktop / Wayland / KDE
 .config/gtk-3.0/**
 .config/hypr/**
 .config/fcitx5/**
 .config/waybar/**
 .config/brave-flags.conf
+.config/mineapps.list
 .config/kcminputrc
 .config/kglobalshortcutsrc
 .config/konsolerc
 .config/kwinrc
+
+# Desktop application state
+.local/state/noctalia/**
+.local/share/konsole/**
+.local/share/user-places.xbel
+
+# Workstation/x86-specific
+.slang/**
+Scripts/depman
+
+# Input-method environment; unnecessary on headless Pi
+.zprofile
+
 {{ end }}

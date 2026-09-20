@@ -133,6 +133,17 @@
    </metadata>
   </info>
  </bookmark>
+ <bookmark href="file:///home/quang-tran/Scripts">
+  <title>Scripts</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="inode-directory"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1789926022/0</ID>
+   </metadata>
+  </info>
+ </bookmark>
  <bookmark href="file:///home/quang-tran/.local/share/chezmoi">
   <title>chezmoi</title>
   <info>
@@ -249,6 +260,24 @@
     <UDI>/org/freedesktop/UDisks2/block_devices/sda4</UDI>
     <isSystemItem>true</isSystemItem>
     <uuid>a0e3-fd30</uuid>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/nvme0n1p2</UDI>
+    <isSystemItem>true</isSystemItem>
+    <uuid>87e37ca6-aebf-4f7d-87d2-86a88c4aeffc</uuid>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/sda3</UDI>
+    <isSystemItem>true</isSystemItem>
+    <uuid>dc189e47189e2116</uuid>
    </metadata>
   </info>
  </separator>
