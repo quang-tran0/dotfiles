@@ -1,42 +1,155 @@
-
-" --- General Settings ---
-set nocompatible            " Disable compatibility with old vi quirks
-set encoding=utf-8          " Set internal character encoding to UTF-8
-set number                  " Show absolute line numbers on the left sidebar
-set history=1000            " Increase the Ex command execution history limit
-set wildmenu                " Enable visual autocomplete menu for command mode
+" --- Settings ---
+set nocompatible              " Disable compatibility with old vi quirks
+set encoding=utf-8            " Set internal character encoding to UTF-8
+set number                    " Show absolute line numbers on the left sidebar
+set relativenumber            " Show line numbers relative to the cursor (hybrid with 'number')
+set history=1000              " Increase the Ex command execution history limit
+set wildmenu                  " Enable visual autocomplete menu for command mode
 set whichwrap+=<,>,h,l,[,]
 set mouse=a
 
 " --- UI & Appearance ---
-syntax on                   " Enable contextual syntax highlighting
-set wrap                    " Automatically wrap lines that exceed window width
-set scrolloff=8             " Keep at least 8 vertical lines visible when scrolling
-set laststatus=2            " Always show the status bar at the window bottom
-set showcmd                 " Display incomplete macro/key commands in status bar
+syntax on                     " Enable contextual syntax highlighting
+set wrap                      " Automatically wrap lines that exceed window width
+set scrolloff=8               " Keep at least 8 vertical lines visible when scrolling
+set laststatus=2              " Always show the status bar at the window bottom
+set showcmd                   " Display incomplete macro/key commands in status bar
+set cursorline                " Highlight the line the cursor is on
+
+" --- Colors: Tokyo Night (xấp xỉ bằng 256 màu cho vim cũ) ---
+set t_Co=256                  " Use 256-color palette (works inside tmux)
+set t_ut=                     " Fix nền sai màu khi cuộn trong tmux
+set background=dark
+" set termguicolors           " Bật nếu vim >= 7.4.1778 và terminal hỗ trợ true color
+highlight clear
+if exists('syntax_on') | syntax reset | endif
+
+" Bảng màu: ['hex gốc Tokyo Night', số màu 256 gần nhất]
+let s:fg      = ['#c0caf5', 189]
+let s:bg      = ['#1a1b26', 234]
+let s:bg_dark = ['#16161e', 233]
+let s:bg_hl   = ['#292e42', 236]
+let s:bg_vis  = ['#283457', 238]
+let s:gutter  = ['#3b4261', 238]
+let s:comment = ['#565f89', 60]
+let s:dark5   = ['#737aa2', 103]
+let s:blue    = ['#7aa2f7', 111]
+let s:blue0   = ['#3d59a1', 61]
+let s:blue1   = ['#2ac3de', 38]
+let s:cyan    = ['#7dcfff', 117]
+let s:green   = ['#9ece6a', 149]
+let s:magenta = ['#bb9af7', 141]
+let s:orange  = ['#ff9e64', 215]
+let s:red     = ['#f7768e', 204]
+let s:yellow  = ['#e0af68', 179]
+let s:black   = ['#15161e', 232]
+let s:none    = ['NONE', 'NONE']
+
+function! s:H(group, fg, bg, ...)
+  let l:attr = a:0 ? a:1 : 'NONE'
+  execute 'highlight ' . a:group
+        \ . ' guifg=' . a:fg[0] . ' ctermfg=' . a:fg[1]
+        \ . ' guibg=' . a:bg[0] . ' ctermbg=' . a:bg[1]
+        \ . ' gui=' . l:attr . ' cterm=' . l:attr
+endfunction
+
+" Giao diện
+call s:H('Normal',       s:fg,      s:bg)
+call s:H('NonText',      s:comment, s:none)
+call s:H('SpecialKey',   s:comment, s:none)
+call s:H('LineNr',       s:dark5,   s:bg)
+call s:H('CursorLineNr', s:orange,  s:bg_hl, 'bold')
+call s:H('CursorLine',   s:none,    s:bg_hl)
+call s:H('ColorColumn',  s:none,    s:bg_hl)
+call s:H('SignColumn',   s:none,    s:bg)
+call s:H('Visual',       s:none,    s:bg_vis)
+call s:H('Search',       s:fg,      s:blue0)
+call s:H('IncSearch',    s:black,   s:orange)
+call s:H('MatchParen',   s:orange,  s:none, 'bold')
+call s:H('StatusLine',   s:black,   s:blue, 'bold')
+call s:H('StatusLineNC', s:comment, s:bg_hl)
+call s:H('VertSplit',    s:gutter,  s:bg)
+call s:H('Pmenu',        s:fg,      s:bg_hl)
+call s:H('PmenuSel',     s:fg,      s:blue0)
+call s:H('PmenuSbar',    s:none,    s:bg_vis)
+call s:H('PmenuThumb',   s:none,    s:comment)
+call s:H('WildMenu',     s:black,   s:blue)
+call s:H('Folded',       s:blue,    s:gutter)
+call s:H('FoldColumn',   s:comment, s:bg)
+call s:H('Directory',    s:blue,    s:none)
+call s:H('Title',        s:blue,    s:none, 'bold')
+call s:H('ErrorMsg',     s:red,     s:none)
+call s:H('WarningMsg',   s:yellow,  s:none)
+call s:H('MoreMsg',      s:blue,    s:none)
+call s:H('ModeMsg',      s:fg,      s:none, 'bold')
+call s:H('Question',     s:blue,    s:none)
+call s:H('Todo',         s:bg,      s:yellow, 'bold')
+call s:H('DiffAdd',      s:none,    ['#20303b', 22])
+call s:H('DiffChange',   s:none,    ['#1f2231', 236])
+call s:H('DiffDelete',   s:red,     ['#37222c', 52])
+call s:H('DiffText',     s:none,    ['#394b70', 24])
+
+" Cú pháp
+call s:H('Comment',      s:comment, s:none)
+call s:H('Constant',     s:orange,  s:none)
+call s:H('String',       s:green,   s:none)
+call s:H('Character',    s:green,   s:none)
+call s:H('Number',       s:orange,  s:none)
+call s:H('Boolean',      s:orange,  s:none)
+call s:H('Float',        s:orange,  s:none)
+call s:H('Identifier',   s:magenta, s:none)
+call s:H('Function',     s:blue,    s:none)
+call s:H('Statement',    s:magenta, s:none)
+call s:H('Conditional',  s:magenta, s:none)
+call s:H('Repeat',       s:magenta, s:none)
+call s:H('Label',        s:blue,    s:none)
+call s:H('Operator',     s:cyan,    s:none)
+call s:H('Keyword',      s:cyan,    s:none)
+call s:H('Exception',    s:magenta, s:none)
+call s:H('PreProc',      s:cyan,    s:none)
+call s:H('Include',      s:magenta, s:none)
+call s:H('Define',       s:magenta, s:none)
+call s:H('Macro',        s:magenta, s:none)
+call s:H('Type',         s:blue1,   s:none)
+call s:H('StorageClass', s:blue1,   s:none)
+call s:H('Structure',    s:blue1,   s:none)
+call s:H('Typedef',      s:blue1,   s:none)
+call s:H('Special',      s:blue1,   s:none)
+call s:H('SpecialChar',  s:blue1,   s:none)
+call s:H('Delimiter',    s:blue1,   s:none)
+call s:H('Underlined',   s:blue,    s:none, 'underline')
+call s:H('Error',        s:red,     s:none)
+
+let g:colors_name = 'tokyonight-cterm'
 
 " --- Tabs & Indentation ---
-set tabstop=4               " Render a horizontal tab (\t) as 4 spaces wide
-set softtabstop=4           " Insert 4 spaces when pressing the Tab key
-set shiftwidth=4            " Number of spaces used for each step of (auto)indent
-set expandtab               " Convert all inserted tab characters into spaces
-set autoindent              " Copy indentation from the previous line on Enter
-set smartindent             " Introduce context-dependent automatic indenting
+set tabstop=4                 " Render a horizontal tab (\t) as 4 spaces wide
+set softtabstop=4             " Insert 4 spaces when pressing the Tab key
+set shiftwidth=4              " Number of spaces used for each step of (auto)indent
+set expandtab                 " Convert all inserted tab characters into spaces
+set autoindent                " Copy indentation from the previous line on Enter
+set smartindent               " Introduce context-dependent automatic indenting
 
 " --- Search Mechanics ---
-set hlsearch                " Highlight all matching strings for the search pattern
-set incsearch               " Show search results incrementally as you type
-set ignorecase              " Ignore uppercase/lowercase distinctions in search
-set smartcase               " Override 'ignorecase' if pattern contains capitals
+set hlsearch                  " Highlight all matching strings for the search pattern
+set incsearch                 " Show search results incrementally as you type
+set ignorecase                " Ignore uppercase/lowercase distinctions in search
+set smartcase                 " Override 'ignorecase' if pattern contains capitals
 
 " --- Backup & Performance ---
-set nobackup                " Prevent writing backup files before overwriting a file
-set noswapfile              " Disable recovery swapfiles for snappier performance
-set undofile                " Persist undo history across application restarts
-set undodir=~/.vim/undodir  " Centralized directory path for your undo files
+set nobackup                  " Prevent writing backup files before overwriting a file
+set noswapfile                " Disable recovery swapfiles for snappier performance
+set undofile                  " Persist undo history across application restarts
+set undodir=~/.vim/undodir    " Centralized directory path for your undo files
 
-" --- Custom Key Remappings ---
-let mapleader = " "         " Map the primary prefix leader key to the Spacebar
+augroup netrw_keys
+  autocmd!
+  " gu: nhảy con trỏ về dòng ../
+  autocmd FileType netrw nnoremap <buffer> <silent> gu gg:call search('^\.\./')<CR>
+augroup END
+
+
+let mapleader = " "           " Map the primary prefix leader key to the Spacebar
 
 nnoremap <leader>cd :Ex<CR>
 nnoremap <leader>tn :tabnew<CR>
