@@ -41,3 +41,4 @@ dolphin
 gnome-text-editor
 tree-sitter-cli
 ripgrep
+pacman-contrib
