@@ -1,0 +1,58 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# Chỉ chạy phần bên dưới khi là shell tương tác
+case $- in
+    *i*) ;;
+    *) return ;;
+esac
+
+# Locale UTF-8 (cần cho các ký tự ╭─ ╰─ ❯ trong prompt)
+export LANG="${LANG:-en_US.UTF-8}"
+
+# Bảng màu cho ls (đồng bộ màu giữa terminal thường và tmux)
+if [ -f ~/.dircolors ]; then
+    eval "$(dircolors -b ~/.dircolors)"
+else
+    eval "$(dircolors -b)"
+fi
+
+# User specific aliases and functions
+alias ls='ls --color=auto --group-directories-first'
+alias ll='ls -lhaF --color=auto --group-directories-first'
+alias la='ls -lhAF --color=auto --group-directories-first'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias mybash='vi ~/.bashrc'
+alias myvi='vi ~/.vimrc'
+
+# Prompt kiểu starship (Catppuccin-ish)
+PS1='\[\e[38;5;244m\]╭─\[\e[0m\] \[\e[1;34m\]\u\[\e[0m\]\[\e[1;36m\]@\h\[\e[0m\] \[\e[1;34m\]\w\[\e[0m\]\n\[\e[38;5;244m\]╰─\[\e[0m\]\[\e[1;32m\]❯\[\e[0m\] '
+
+# Di chuyển theo từ bằng Alt + mũi tên
+bind '"\e[1;3C": forward-word'
+bind '"\e[1;3D": backward-word'
+bind '"\e\e[D": backward-word'
+bind '"\e\e[C": forward-word'
+
+# Di chuyển theo từ bằng Ctrl + mũi tên
+bind '"\e[1;5C": forward-word'
+bind '"\e[1;5D": backward-word'
+
+
+# Tự động mở tmux khi mở terminal
+if command -v tmux >/dev/null 2>&1 \
+    && [ -z "$TMUX" ] \
+    && [ -z "$NO_TMUX" ] \
+    && [ -t 0 ] && [ -t 1 ]; 
+then
+    tmux attach -t main 2>/dev/null || tmux new -s main
+fi
