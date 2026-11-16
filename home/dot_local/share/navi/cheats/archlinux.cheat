@@ -79,20 +79,22 @@ sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pa
 
 % Clear Cache and Orphans
 # Clean pacman cache (kept latest 1 versions) and remove all orphans
-paccache -rk1
-echo "Pacman cache cleaned (kept latest 1 versions)."
+sudo paccache -rk1
+echo "Pacman cache cleaned (kept latest 1 version)."
 
 orphans=$(pacman -Qdtq 2>/dev/null)
-[ -n "$orphans" ] && sudo pacman -Rns --noconfirm $orphans
-echo "Official orphan packages removed."
+if [ -n "$orphans" ]; then
+    sudo pacman -Rns --noconfirm $orphans && echo "Orphan packages removed."
+else
+    echo "No orphan packages."
+fi
 
 if command -v paru >/dev/null 2>&1; then
-    paru -Yc --noconfirm
+    paru -c --noconfirm
 elif command -v yay >/dev/null 2>&1; then
     yay -Yc --noconfirm
 fi
-echo "AUR orphan packages removed."
-
+echo "Done."
 
 
 % Setup Paru Helper
