@@ -7,7 +7,7 @@
 
 local vars = {
     terminal    = "kitty",
-    fileManager = "nautilus --new-window",
+    fileManager = "luciole",
     browser     = "brave",
 }
 
